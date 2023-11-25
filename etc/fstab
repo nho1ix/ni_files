@@ -1,0 +1,18 @@
+# Static information about the filesystems.
+# See fstab(5) for details.
+
+# <file system> <dir> <type> <options> <dump> <pass>
+# /dev/mapper/nvme
+UUID=27a0079b-61d1-4b90-982a-15da724709eb	/         	ext4      	rw,relatime,discard,noatime,nodev	0 1
+
+# /dev/nvme0n1p1
+UUID=E456-0CF7      	/boot     	vfat      	rw,relatime,fmask=0022,dmask=0022,codepage=437,iocharset=ascii,shortname=mixed,utf8,errors=remount-ro	0 2
+
+# /dev/zram0
+/dev/zram0          	none      	swap      	defaults,pri=100	0 0
+
+# /dev/mapper/tsbackup
+/dev/mapper/tsbackup /mnt  ext4     	defaults,noauto,x-systemd.automount     	0 2
+
+# 2TB Hard Drive (2nd one)
+# UUID=2F23370450232B70 /mnt2  ntfs     	defaults                              	0 2

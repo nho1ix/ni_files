@@ -1,0 +1,2 @@
+#termdown '2025-03-22 13:11' --no-figlet -o ~/countdown
+termdown '2023-12-22 13:11' --no-figlet -o ~/countdown

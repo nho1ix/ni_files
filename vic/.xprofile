@@ -1,0 +1,34 @@
+#!/bin/sh
+# Export Display for dunst & Mouse Hider
+systemctl --user import-environment DISPLAY &
+export XDG_SESSION_TYPE=x11 &
+unclutter idle 3 &
+
+# Picom
+picom &
+
+# Autostart
+sh ~/.config/autostart/autostart.sh &
+
+# XRDB
+xrdb ~/.Xresources &
+
+# Conky
+sleep 0.5 && conky -c ~/.config/conky/conky.conf &
+sleep 0.5 && conky -c ~/.config/conky/conky_left.conf &
+
+# Notifications
+wired &
+
+# 4k@100 + 1080p@60 monitors
+#sleep 0.5 && xrandr --output DisplayPort-0 --mode 3840x2160_102 --output HDMI-A-0 --mode 1920x1080 --rate 60 --pos -200x0 --rotate left --left-of DisplayPort-0 &
+sleep 0.5 && xrandr --output DisplayPort-0 --primary --mode 3840x2160_100 --scale 1x1 --pos 1512x440 --auto --rotate normal --output HDMI-A-0 --mode 1920x1080_74  --rotate left --scale 1.4x1.4
+
+# 4k@119hz monitor
+# sleep 0.5 && xrandr --output HDMI-A-0 --off --output DisplayPort-0 --mode 3840x2160_119.6 &
+
+# 4k@102 + iPad weylus
+# sleep 0.5 && xrandr --output DisplayPort-0 --mode 3840x2160_102 --right-of DVI-D-0 --output DVI-D-0 --mode 1480x1080_30 --scale 1x1
+
+# Wallpaper Setter
+sleep 1 && feh --bg-fill ~/.config/wall/cloudy_mountains.jpg --bg-fill ~/.config/wall/DSCF0180.JPG &

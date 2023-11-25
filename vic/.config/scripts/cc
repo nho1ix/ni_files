@@ -1,0 +1,19 @@
+#!/bin/bash
+count_down() {
+    # start="1742649060" # original time
+    start="1703250660" # shortened time
+    # start="1692730800" # Canada Trip
+    ## Is this more than 24h away?
+    years="$(($(($(( $start - $(date +%s) )) * 1 )) / 86400 / 365))"
+    days="$(($(($(( $start - $(date +%s) )) * 1 )) / 86400 - $years * 365))"
+    time="$(( $start - `date +%s` ))"
+    if [ $years == 0 ]; then
+        final=$(printf '%sd %sh %sm %ss' "$days" "$(date -u -d "@$time" +%l)" "$(date -u -d "@$time" +%M)" "$(date -u -d "@$time" +%S)")
+    else 
+        final=$(printf '%sy %sd %sh %sm %ss' "$years" "$days" "$(date -u -d "@$time" +%l)" "$(date -u -d "@$time" +%M)" "$(date -u -d "@$time" +%S)")
+    fi
+    echo $final
+    exit 0
+}
+
+count_down > ~/.config/scripts/countdown

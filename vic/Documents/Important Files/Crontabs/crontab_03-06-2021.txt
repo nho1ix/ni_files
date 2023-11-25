@@ -1,0 +1,6 @@
+# 20 14 * * 3 /home/victor/Documents/Important\ Files/Crontabs/MTRM.sh
+# 35 14 * * 2 /home/victor/Documents/Important\ Files/Crontabs/MTRNM.sh
+0 10-22/2 * * * /home/victor/Documents/Important\ Files/Crontabs/Pacman\ Auto-Download.sh
+30 15 * * 5 /home/victor/Documents/Important\ Files/Crontabs/Turn\ in\ Packet.sh
+#0 0 * * * /home/victor/Documents/Important\ Files/Crontabs/sleep.sh
+0 * * * * /home/victor/Documents/Important\ Files/Crontabs/git.sh

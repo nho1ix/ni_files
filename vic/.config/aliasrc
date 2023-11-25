@@ -1,0 +1,146 @@
+#!/bin/sh
+# System alias
+alias shutdown='sudo shutdown now'
+
+# ls aliases
+alias ld='exa -la'
+
+# Data management
+
+alias rsynca='sudo rsync -ltru --info=progress2'
+alias timeshift='sudo timeshift-gtk'
+alias gparted='sudo gparted'
+alias pny='cd /run/media/victor/4E57-2407/'
+alias mnt='sudo mount'
+alias mnts='sudo mount /dev/mapper/tsbackup /mnt'
+alias umnt='sudo umount'
+
+## iPhone related aliases
+alias conphone='idevicepair pair && sudo ifuse -o allow_other /mnt2'
+
+# Github aliases
+alias config='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
+alias c='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
+alias cs='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME status'
+alias ca='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME add'
+alias caf='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME add -f'
+alias cm='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME commit -m'
+alias cam='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME commit -am'
+alias crm='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME rm -r'
+alias crmc='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME rm -r --cached'
+alias cres='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME restore --staged'
+alias cdd='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME diff'
+alias cdds='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME diff --staged'
+alias cpush='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME push'
+alias cpull='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME pull'
+
+alias configg='/usr/bin/git --git-dir=$HOME/Desktop/.dotfiles-mirror.git/ --work-tree=$HOME/Desktop/'
+alias bconfig='/usr/bin/git --git-dir=$HOME/bdata/ --work-tree=$HOME'
+alias configr='/usr/bin/git --git-dir=$HOME/misc/ --work-tree=$HOME'
+alias gitwall='/usr/bin/git --git-dir=$HOME/Pictures/GitWall --work-tree=$HOME/Pictures/'
+alias gitaltwall='/usr/bin/git --git-dir=$HOME/Pictures/GitAltWall --work-tree=$HOME/Pictures'
+alias handouts='/usr/bin/git --git-dir=$HOME/handouts/ --work-tree=$HOME/vimwiki'
+alias gdc='git diff --cached'
+alias gs='gst'
+
+# Shortcuts
+alias startc='cd ~/.config/suckless && cd dwm && sudo make install && .. && cd dmenu && sudo make install && .. && cd dwmblocks && sudo make install && .. && cd st && sudo make install && .. && cd slock && sudo make install && cd'
+alias csjf='cd ~/.config/suckless && cd dwm && git fetch upstream master && .. && cd dwmblocks && git fetch upstream master && .. && cd dmenu && git fetch upstream master && .. && cd slock && git fetch upstream master && .. && cd st && git fetch upstream master && cd'
+#alias csjpull='cd ~/.config/suckless && cd dwm && git pull upstream master && .. && cd dwmblocks && git pull upstream master && .. && cd dmenu && git pull upstream 5.0 && .. && cd slock && git pull upstream master && .. && cd st && git pull upstream master && cd'
+alias csjpull='cd ~/.config/suckless && cd dwm && git pull upstream master && .. && cd dwmblocks && git pull upstream main && .. && cd dmenu && git pull upstream master && .. && cd slock && git pull upstream master && .. && cd'
+alias csjpush='cd ~/.config/suckless && cd dwm && git push && .. && cd dwmblocks && git push && .. && cd dmenu && git push && .. && cd slock && git push && .. && cd st && git push && cd'
+alias npush='cd ~/vimwiki && ga * && gcam "Update notes" && gp && cd'
+alias pst='~/Pictures/Screenshots/Temporary'
+alias ydlfe='sh -c "yt-dlp -F'
+alias ydldl='sh -c "yt-dlp -f'
+alias ap='atomicparsley'
+alias ffrecord='sh ~/.config/scripts/screencast_pulse.sh'
+alias ffcam='sh ~/.config/scripts/screencast_pulse_cam.sh'
+alias blueon='sudo rfkill unblock bluetooth && rfkill && sudo systemctl start bluetooth'
+alias blueoff='sudo rfkill block bluetooth && rfkill && sudo systemctl stop bluetooth'
+alias fixwifi='sudo rfkill unblock wlan && rfkill'
+alias csj='cd ~/.config/suckless && eza -la'
+alias newcron='sudo newcron'
+alias powertop='sudo powertop'
+alias gufw='sudo gufw'
+alias ytmp3='yt-dlp -x --audio-format mp3'
+
+# Pacman import / export lists
+alias expkglist='pacman -Q|cut -f 1 -d" " > packages.list'
+alias impkglist='sudo pacman -S $(cat packages.list)'
+alias downgrade='sudo downgrade'
+
+# Misc / Fun Stuff
+alias minecraft='java -jar ~/Downloads/TLauncher.jar'
+alias tg='telegram-cli -W -A'
+alias stmod='cd /run/timeshift/backup/home/victor/.steam/steamapps/common/tModLoader && ./tModLoaderServer'
+alias rebuild='yay -S --answerclean ALL --rebuildall'
+alias djo='jpegoptim --size 8000'
+
+# Vim
+alias vim='nvim'
+alias sn='sudo nvim'
+alias vifm='~/.config/vifm/scripts/vifmrun'
+alias ssh='export TERM=ansi; ssh'
+
+cpfuj() {
+  sudo mount /dev/sdd1 /mnt2
+  notify-send -u normal "Mounting SD Card" "Copying new JPEGs"
+  rsync -a -v --ignore-existing /mnt2/DCIM/100_FUJI/* /mnt/Fuji\ Pictures/Fuji\ Cam/100_FUJI_JPG/
+  sudo umount /mnt2
+  notify-send -u normal "Finished" "Successfully transferred all JPEGs"
+}
+
+cpfur() {
+  sudo mount /dev/sdd1 /mnt2
+  notify-send -u normal "Mounting SD Card" "Copying new RAWs"
+  rsync -a -v --ignore-existing /mnt2/DCIM/100_FUJI/* /mnt/Fuji\ Pictures/Fuji\ Cam/100_FUJI_RAW/
+  sudo umount /mnt2
+  notify-send -u normal "Finished" "Successfully transferred all RAWs"
+}
+
+yt() {
+  yt-dlp --default-search "ytsearch" --embed-thumbnail "$@"
+}
+
+zs() {
+  zspotify "$@"
+}
+
+csjgs() {
+cd ~/.config/suckless && 
+cd dwm && 
+
+tput setab 1 && 
+echo dwm && 
+tput sgr 0 && 
+
+git status && 
+.. && 
+
+tput setab 1 && 
+echo dwmblocks &&
+tput sgr 0 && 
+cd dwmblocks && 
+git status && .. && 
+
+tput setab 1 && 
+echo dmenu && 
+tput sgr 0 && 
+cd dmenu && 
+git status && .. && 
+
+tput setab 1 && 
+echo slock && 
+tput sgr 0 && 
+cd slock && 
+git status && .. && 
+
+tput setab 1 && 
+echo st && 
+tput sgr 0 && 
+cd st && 
+git status && ..
+}
+
+# alias lnperl='ln -s $HOME/.config/suckless/dwmblocks/perl/{battery,clock,cpu,disk,internet,memory,volume,weather,} $HOME/.local/bin/statusbar/{battery,clock,cpu,disk,internet,memory,volume,weather,}'
